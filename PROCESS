@@ -70,7 +70,7 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                git 'https://github.com/RAHAMSHAIK007/dockernewproject.git'
+                git 'https://github.com/ravivt02/docker-project.git'
             }
         }
         stage('build') {
@@ -102,40 +102,29 @@ systemctl restart docker.service
 
 5. WRITE COMPOSE FILE AND PUSH TO GITHUB
 
-version: '3'
+version: '3.8'
 services:
-  devops:
-    image: rahamshaik/devopsreponit:latest
-    ports:
-      - "80:80"
-    volumes:
-      - "devopsvol"
-    deploy:
-      replicas: 3
-
-  aws:
-    image: rahamshaik/awsreponit:latest
+  movies:
+    image: ravivt02/paytmmovies:latest
     ports:
       - "81:80"
-    volumes:
-      - "awsvol"
     deploy:
       replicas: 3
-
-  datascience:
-    image: rahamshaik/datasciencereponit:latest
+  train:
+    image: ravivt02/paytmtrain:latest
     ports:
       - "82:80"
-    volumes:
-      - "datasciencevol"
     deploy:
       replicas: 3
-
-  azure:
-    image: rahamshaik/azurereponit:latest
+  dth:
+    image: ravivt02/paytmdth:latest
     ports:
       - "83:80"
-    volumes:
-      - "azurevol"
+    deploy:
+      replicas: 3
+  recharge:
+    image: ravivt02/paytmrecharge:latest
+    ports:
+      - "84:80"
     deploy:
       replicas: 3
